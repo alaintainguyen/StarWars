@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Wars</string>
+    <string name="dashboard_last_trip_title">Last trips</string>
+    <string name="user_detail_departure">Departure</string>
+    <string name="user_detail_arrival">Arrival</string>
+    <string name="user_detail_distance">Trip distance</string>
+    <string name="user_detail_duration">Trip duration</string>
+    <string name="user_detail_pilot">Pilot rating</string>
+    <string name="user_detail_pilot_not_rating">User didn\'t rate yet</string>
+    <string name="generic_error">Un problème est survenu. Veuillez recommencer ultérieurement.</string>
+</resources>
