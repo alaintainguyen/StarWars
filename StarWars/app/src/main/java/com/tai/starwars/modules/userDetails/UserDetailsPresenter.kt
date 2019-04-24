@@ -21,6 +21,7 @@ class UserDetailsPresenter(private val mSubDashboardUseCase: UserDetailsUseCase)
     }
 
     override fun getDetailInformation(userId: Int) {
+        // don't call the other endpoint because it looks the same
         mSubDashboardUseCase.execute(GetDetailsSubscriber(), userId)
     }
 
