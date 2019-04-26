@@ -52,6 +52,7 @@ class UserDetailsActivity : BaseActivity(), UserDetailsContract.View {
         if (rating != 0) {
             detail_star_group.visibility = VISIBLE
             detail_not_rating.visibility = GONE
+            // We can also custom RatingBar
             star1.setImageResource(if (rating >= 1) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
             star2.setImageResource(if (rating >= 2) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
             star3.setImageResource(if (rating >= 3) R.drawable.ic_star_filled else R.drawable.ic_star_empty)

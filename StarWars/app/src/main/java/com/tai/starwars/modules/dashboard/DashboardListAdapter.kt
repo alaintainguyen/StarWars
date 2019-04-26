@@ -33,6 +33,7 @@ class DashboardListAdapter internal constructor(private val mPresenter: Dashboar
         val rating = resultBean.pilot?.rating?.toInt() ?: 0
         if (rating != 0) {
             holder.itemView.star_group.visibility = VISIBLE
+            // We can also custom RatingBar
             holder.itemView.star1.setImageResource(if (rating >= 1) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
             holder.itemView.star2.setImageResource(if (rating >= 2) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
             holder.itemView.star3.setImageResource(if (rating >= 3) R.drawable.ic_star_filled else R.drawable.ic_star_empty)
