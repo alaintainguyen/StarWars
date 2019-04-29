@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.tai.starwars.R
 import com.tai.starwars.domain.bean.TripBean
 import com.tai.starwars.modules.core.BaseActivity
+import com.tai.starwars.modules.utils.BASE_URL
 import com.tai.starwars.modules.utils.DurationUtils.convertDateTimeToHoursMinutes
 import com.tai.starwars.modules.utils.DurationUtils.convertSecondToHoursMinutesSeconds
 import dagger.android.AndroidInjection
@@ -19,7 +20,6 @@ class UserDetailsActivity : BaseActivity(), UserDetailsContract.View {
 
     companion object {
         const val ID: String = "id"
-        const val GLOBAL_HTTP: String = "https://backup-star-wars.herokuapp.com"
     }
 
     @Inject
@@ -37,9 +37,9 @@ class UserDetailsActivity : BaseActivity(), UserDetailsContract.View {
     }
 
     override fun displayUserDetails(result: TripBean) {
-        detail_picture.setImageURI(GLOBAL_HTTP + result.pilot?.url)
-        detail_pick_up.setImageURI(GLOBAL_HTTP + result.pickUp?.picture)
-        detail_drop_off.setImageURI(GLOBAL_HTTP + result.dropOff?.picture)
+        detail_picture.setImageURI(BASE_URL + result.pilot?.url)
+        detail_pick_up.setImageURI(BASE_URL + result.pickUp?.picture)
+        detail_drop_off.setImageURI(BASE_URL + result.dropOff?.picture)
         detail_name.text = result.pilot?.name
         detail_departure_name.text = result.pickUp?.name
         detail_arrival_name.text = result.dropOff?.name

@@ -8,13 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tai.starwars.R
 import com.tai.starwars.domain.bean.TripBean
+import com.tai.starwars.modules.utils.BASE_URL
 import kotlinx.android.synthetic.main.item_display_info.view.*
 
 class DashboardListAdapter internal constructor(private val mPresenter: DashboardContract.Presenter) : RecyclerView.Adapter<DashboardListAdapter.DashboardViewHolder>() {
-
-    companion object {
-        const val GLOBAL_HTTP: String = "https://backup-star-wars.herokuapp.com"
-    }
 
     private val mItems: ArrayList<TripBean> = arrayListOf()
 
@@ -26,7 +23,7 @@ class DashboardListAdapter internal constructor(private val mPresenter: Dashboar
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val resultBean = mItems[position]
         holder.itemView.user_name.text = resultBean.pilot?.name
-        holder.itemView.user_picture.setImageURI(GLOBAL_HTTP + resultBean.pilot?.url)
+        holder.itemView.user_picture.setImageURI(BASE_URL + resultBean.pilot?.url)
         holder.itemView.user_pick_up.text = resultBean.pickUp?.name
         holder.itemView.user_drop_off.text = resultBean.dropOff?.name
 

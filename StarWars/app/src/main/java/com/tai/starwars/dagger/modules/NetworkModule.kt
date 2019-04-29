@@ -2,6 +2,7 @@ package com.tai.starwars.dagger.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.tai.starwars.modules.utils.BASE_URL
 
 import dagger.Module
 import dagger.Provides
@@ -12,10 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class NetworkModule {
-
-    companion object {
-        private const val API_BASE = "https://backup-star-wars.herokuapp.com/"
-    }
 
     @Provides
     internal fun provideGson(): Gson {
@@ -37,7 +34,7 @@ class NetworkModule {
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(API_BASE)
+                .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .build()
     }
