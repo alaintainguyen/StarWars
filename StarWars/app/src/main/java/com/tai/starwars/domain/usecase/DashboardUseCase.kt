@@ -19,7 +19,7 @@ internal constructor(postExecutionThread: Scheduler, private val mRepository: Da
             mRepository.setCache(resource.distinctBy {
                 r -> r.id
             })
-            Observable.just(mRepository.getAllTrips())
+            mRepository.getAllTrips()
         }
     }
 

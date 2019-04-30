@@ -12,18 +12,13 @@ import javax.inject.Inject
 class DashboardRepository
 
 @Inject
-constructor(retrofit: Retrofit) {
+constructor(retrofit: Retrofit, db: StarWarsDatabase) {
 
     private var mService: DashboardService
     private var mDao: StarWarsDatabase.CachedResourcesDao? = null
 
     init {
         mService = retrofit.create(DashboardService::class.java)
-    }
-
-    @Inject
-    fun dashboardRepository(context: Context) {
-        val db = Room.databaseBuilder(context, StarWarsDatabase::class.java, "database-name").build()
         mDao = db.cachedResourcesDao()
     }
 
@@ -40,7 +35,7 @@ constructor(retrofit: Retrofit) {
         return mDao?.getUserDetails(id)!!
     }
 
-    fun getAllTrips(): List<TripBean>? {
+    fun getAllTrips(): Observable<List<TripBean>>? {
         return mDao?.getAllTrips()
     }
 

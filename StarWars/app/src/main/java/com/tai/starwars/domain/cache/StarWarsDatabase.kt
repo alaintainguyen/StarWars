@@ -15,7 +15,7 @@ abstract class StarWarsDatabase : RoomDatabase() {
         fun getUserDetails(id: Int?): Observable<TripBean>
 
         @Query("SELECT * FROM starwars")
-        fun getAllTrips(): List<TripBean>
+        fun getAllTrips(): Observable<List<TripBean>>
 
         @Insert
         fun insertAll(resources: List<TripBean>)
