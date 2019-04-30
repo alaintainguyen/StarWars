@@ -1,7 +1,5 @@
 package com.tai.starwars.domain.repository
 
-import android.content.Context
-import androidx.room.Room
 import com.tai.starwars.domain.bean.TripBean
 import com.tai.starwars.domain.cache.StarWarsDatabase
 import io.reactivex.Observable

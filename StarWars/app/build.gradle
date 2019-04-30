@@ -92,6 +92,8 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.1"
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
 
     // ROOM
     implementation "androidx.room:room-runtime:$roomVersion"    // https://developer.android.com/topic/libraries/architecture/adding-components#room

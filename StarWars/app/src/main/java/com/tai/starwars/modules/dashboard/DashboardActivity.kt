@@ -33,7 +33,6 @@ class DashboardActivity : BaseActivity(), DashboardContract.View {
         dashboard_refresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary))
 
         dashboard_refresh.setOnRefreshListener {
-            mDashboardListAdapter.clear()
             mPresenter.getInfo()
         }
     }
@@ -50,6 +49,7 @@ class DashboardActivity : BaseActivity(), DashboardContract.View {
 
     override fun displayInformation(allTrips: List<TripBean>) {
         dashboard_refresh.isRefreshing = false
+        mDashboardListAdapter.clear()
         mDashboardListAdapter.addInformation(allTrips)
         mDashboardListAdapter.notifyDataSetChanged()
     }
