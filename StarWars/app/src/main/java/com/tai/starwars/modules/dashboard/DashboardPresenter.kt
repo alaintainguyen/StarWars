@@ -3,6 +3,7 @@ package com.tai.starwars.modules.dashboard
 import com.tai.starwars.domain.bean.TripBean
 import com.tai.starwars.domain.repository.DashboardRepository
 import com.tai.starwars.modules.core.BaseContract
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposable
@@ -26,6 +27,14 @@ class DashboardPresenter(private val mRouter: DashboardContract.Router, private 
 
     override fun getInfo() {
         mSubscription = mRepository.getInfo()
+                .flatMap { resource ->
+                    return@flatMap Observable.fromCallable {
+                        mRepository.setCache(resource.distinctBy { r -> r.id })
+                    }
+                }
+                .concatMap {
+                    return@concatMap mRepository.getAllTrips()
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(GetInfoSubscriber())
