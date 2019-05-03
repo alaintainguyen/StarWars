@@ -1,7 +1,6 @@
 package com.tai.starwars.modules.dashboard
 
 import com.tai.starwars.domain.bean.TripBean
-import com.tai.starwars.domain.usecase.DashboardUseCase
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule

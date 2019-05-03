@@ -43,7 +43,6 @@ class DashboardActivityTest {
 
     @Test
     fun dashboard_onRecyclerView_click() {
-        // Use IdlingResource instead of Thread.sleep
         Thread.sleep(3000)
         onView(allOf(withId(R.id.dashboard_rv), isDisplayed())).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         // Then
@@ -51,10 +50,8 @@ class DashboardActivityTest {
         intended(hasComponent(UserDetailsActivity::class.java.name))
     }
 
-
     @Test
     fun dashboard_RecyclerItemCount() {
-        // Use IdlingResource instead of Thread.sleep
         Thread.sleep(3000)
         onView(withId(R.id.dashboard_rv)).check(Utils.RecyclerViewItemCountAssertion(6))
     }

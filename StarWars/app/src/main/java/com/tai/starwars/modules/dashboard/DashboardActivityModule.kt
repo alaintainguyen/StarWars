@@ -1,7 +1,7 @@
 package com.tai.starwars.modules.dashboard
 
 import com.tai.starwars.dagger.scope.PerActivity
-import com.tai.starwars.domain.usecase.DashboardUseCase
+import com.tai.starwars.domain.repository.DashboardRepository
 import dagger.Module
 import dagger.Provides
 
@@ -10,8 +10,8 @@ class DashboardActivityModule {
 
     @Provides
     @PerActivity
-    internal fun provideDashboardPresenter(router: DashboardContract.Router, dashboardUseCase: DashboardUseCase): DashboardContract.Presenter {
-        return DashboardPresenter(router, dashboardUseCase)
+    internal fun provideDashboardPresenter(router: DashboardContract.Router, repository: DashboardRepository): DashboardContract.Presenter {
+        return DashboardPresenter(router, repository)
     }
 
     @Provides
