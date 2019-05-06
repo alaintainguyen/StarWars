@@ -13,7 +13,7 @@ class DashboardRepository
 constructor(retrofit: Retrofit, db: StarWarsDatabase) {
 
     private var mService: DashboardService
-    private var mDao: StarWarsDatabase.CachedResourcesDao? = null
+    private var mDao: StarWarsDatabase.CachedResourcesDao
 
     init {
         mService = retrofit.create(DashboardService::class.java)
@@ -25,16 +25,16 @@ constructor(retrofit: Retrofit, db: StarWarsDatabase) {
     }
 
     fun setCache(resource: List<TripBean>) {
-        mDao?.deleteAll()
-        mDao?.insertAll(resource)
+        mDao.deleteAll()
+        mDao.insertAll(resource)
     }
 
     fun getUserDetails(id: Int?): Observable<TripBean> {
-        return mDao?.getUserDetails(id)!!
+        return mDao.getUserDetails(id)
     }
 
     fun getAllTrips(): Observable<List<TripBean>>? {
-        return mDao?.getAllTrips()
+        return mDao.getAllTrips()
     }
 
     private interface DashboardService {
