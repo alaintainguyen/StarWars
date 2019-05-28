@@ -12,6 +12,9 @@ interface UserDetailsContract {
 
     interface Presenter : BaseContract.Presenter {
         fun getDetailInformation(userId: Int)
+        fun convertDateTimeToHoursMinutes(date: String?): String
+        fun convertSecondToHoursMinutesSeconds(duration: Long): String
+        fun getDistanceValue(): String
     }
 
 }

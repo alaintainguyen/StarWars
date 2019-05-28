@@ -43,10 +43,10 @@ class UserDetailsActivity : BaseActivity(), UserDetailsContract.View {
         detail_name.text = result.pilot?.name
         detail_departure_name.text = result.pickUp?.name
         detail_arrival_name.text = result.dropOff?.name
-        detail_departure_time.text = convertDateTimeToHoursMinutes(result.pickUp?.date)
-        detail_arrival_time.text = convertDateTimeToHoursMinutes(result.dropOff?.date)
-        detail_trip_duration_value.text = convertSecondToHoursMinutesSeconds(result.duration)
-        detail_trip_distance_value.text = NumberFormat.getNumberInstance(Locale.US).format(result.distance?.value).plus(" ").plus(result.distance?.unit)
+        detail_departure_time.text = mPresenter.convertDateTimeToHoursMinutes(result.pickUp?.date)
+        detail_arrival_time.text = mPresenter.convertDateTimeToHoursMinutes(result.dropOff?.date)
+        detail_trip_duration_value.text = mPresenter.convertSecondToHoursMinutesSeconds(result.duration)
+        detail_trip_distance_value.text = mPresenter.getDistanceValue()
 
         val rating = result.pilot?.rating?.toInt() ?: 0
         if (rating != 0) {
