@@ -1,14 +1,18 @@
 package com.tai.starwars.domain.repository
 
+import android.util.Log
 import com.tai.starwars.domain.bean.TripBean
 import com.tai.starwars.domain.cache.StarWarsDatabase
 import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import javax.inject.Inject
 
 class DashboardRepository
-
 @Inject
 constructor(retrofit: Retrofit, db: StarWarsDatabase) {
 
@@ -20,11 +24,11 @@ constructor(retrofit: Retrofit, db: StarWarsDatabase) {
         mDao = db.cachedResourcesDao()
     }
 
-    fun getInfo(): Observable<List<TripBean>> {
-        return mService.getInfo()
+    suspend fun getInfo() : Deferred<List<TripBean>> = withContext(Dispatchers.IO)  {
+        mService.getInfo()
     }
 
-    fun setCache(resource: List<TripBean>) {
+    suspend fun setCache(resource: List<TripBean>) = withContext(Dispatchers.IO) {
         mDao?.deleteAll()
         mDao?.insertAll(resource)
     }
@@ -39,7 +43,6 @@ constructor(retrofit: Retrofit, db: StarWarsDatabase) {
 
     private interface DashboardService {
         @GET("trips")
-        fun getInfo(): Observable<List<TripBean>>
-
+        fun getInfo(): Deferred<List<TripBean>>
     }
 }
