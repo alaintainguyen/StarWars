@@ -30,10 +30,14 @@ class DashboardPresenter(private val mRouter: DashboardContract.Router, private 
     override fun getInfo() {
 
         GlobalScope.launch(Dispatchers.Main) {
-            val result = mRepository.getInfo()
-            val allTrips = result.await()
-            mRepository.setCache(allTrips.distinctBy { r -> r.id })
-            mView?.displayInformation(allTrips)
+            try {
+                val result = mRepository.getInfo()
+                val allTrips = result.await()
+                mRepository.setCache(allTrips.distinctBy { r -> r.id })
+                mView?.displayInformation(allTrips)
+            } catch (e: Exception) {
+                mView?.displayError()
+            }
         }
         
 //        mSubscription = mRepository.getInfo()
@@ -54,20 +58,20 @@ class DashboardPresenter(private val mRouter: DashboardContract.Router, private 
         mView?.let { view -> mRouter.goToDetails(id, view) }
     }
 
-    open inner class GetInfoSubscriber : ResourceObserver<List<TripBean>>() {
-
-        override fun onNext(@NonNull resources: List<TripBean>) {
-            Log.e("tag","TRUC")
-            mView?.displayInformation(resources)
-        }
-
-        override fun onError(@NonNull e: Throwable) {
-            mView?.displayError()
-        }
-
-        override fun onComplete() {
-            // Nothing to do
-        }
-    }
+//    open inner class GetInfoSubscriber : ResourceObserver<List<TripBean>>() {
+//
+//        override fun onNext(@NonNull resources: List<TripBean>) {
+//            Log.e("tag","TRUC")
+//            mView?.displayInformation(resources)
+//        }
+//
+//        override fun onError(@NonNull e: Throwable) {
+//            mView?.displayError()
+//        }
+//
+//        override fun onComplete() {
+//            // Nothing to do
+//        }
+//    }
 
 }
