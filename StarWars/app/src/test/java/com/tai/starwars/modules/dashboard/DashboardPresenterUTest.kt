@@ -1,12 +1,13 @@
 package com.tai.starwars.modules.dashboard
 
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.eq
 import com.tai.starwars.domain.bean.TripBean
 import com.tai.starwars.domain.usecase.DashboardUseCase
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
@@ -55,7 +56,7 @@ class DashboardPresenterUTest {
             val subscriber = invocation.arguments[0] as DashboardPresenter.GetInfoSubscriber
             subscriber.onNext(mTripBean)
             null
-        }.`when`(mDashboardUseCase).execute(ArgumentMatchers.any(DashboardPresenter.GetInfoSubscriber::class.java))
+        }.`when`(mDashboardUseCase).execute(any<DashboardPresenter.GetInfoSubscriber>(), eq(null))
 
         // When
         mPresenter.getInfo()
@@ -70,7 +71,7 @@ class DashboardPresenterUTest {
             val subscriber = invocation.arguments[0] as DashboardPresenter.GetInfoSubscriber
             subscriber.onError(Throwable())
             null
-        }.`when`(mDashboardUseCase).execute(ArgumentMatchers.any(DashboardPresenter.GetInfoSubscriber::class.java))
+        }.`when`(mDashboardUseCase).execute(any<DashboardPresenter.GetInfoSubscriber>(), eq(null))
 
         // When
         mPresenter.getInfo()
@@ -86,7 +87,7 @@ class DashboardPresenterUTest {
             val subscriber = invocation.arguments[0] as DashboardPresenter.GetInfoSubscriber
             subscriber.onNext(mTripBean)
             null
-        }.`when`(mDashboardUseCase).execute(ArgumentMatchers.any(DashboardPresenter.GetInfoSubscriber::class.java))
+        }.`when`(mDashboardUseCase).execute(any<DashboardPresenter.GetInfoSubscriber>(), eq(null))
         mPresenter.getInfo()
 
         // When

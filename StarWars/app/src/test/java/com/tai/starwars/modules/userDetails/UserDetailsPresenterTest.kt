@@ -1,16 +1,13 @@
 package com.tai.starwars.modules.userDetails
 
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.eq
 import com.tai.starwars.domain.bean.*
-import com.tai.starwars.domain.usecase.UseCase
 import com.tai.starwars.domain.usecase.UserDetailsUseCase
-import com.tai.starwars.modules.dashboard.DashboardPresenter
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.ArgumentMatchers
-import org.mockito.ArgumentMatchers.any
-import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.verify
@@ -54,7 +51,7 @@ class UserDetailsPresenterTest {
             val subscriber = invocation.arguments[0] as UserDetailsPresenter.GetDetailsSubscriber
             subscriber.onNext(mTripBean)
             null
-        }.`when`(mUserDetailsUseCase).execute(any(UserDetailsPresenter.GetDetailsSubscriber::class.java), eq(1))
+        }.`when`(mUserDetailsUseCase).execute(any<UserDetailsPresenter.GetDetailsSubscriber>(), eq(1))
 
         // When
         mPresenter.getDetailInformation(1)
@@ -70,7 +67,7 @@ class UserDetailsPresenterTest {
             val subscriber = invocation.arguments[0] as UserDetailsPresenter.GetDetailsSubscriber
             subscriber.onError(Throwable())
             null
-        }.`when`(mUserDetailsUseCase).execute(any(UserDetailsPresenter.GetDetailsSubscriber::class.java), eq(1))
+        }.`when`(mUserDetailsUseCase).execute(any<UserDetailsPresenter.GetDetailsSubscriber>(), eq(1))
 
         // When
         mPresenter.getDetailInformation(1)
